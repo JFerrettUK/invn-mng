@@ -7,8 +7,8 @@ console.log(
 const userArgs = process.argv.slice(2);
 const mongoDB = userArgs[0];
 
-const Product = require("./models/product");
-const Category = require("./models/category");
+const Product = require("./models/products");
+const Category = require("./models/categories");
 
 const categories = [];
 const products = [];

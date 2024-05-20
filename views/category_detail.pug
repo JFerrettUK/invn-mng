@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Category: #{category.name}
+  p= category.description
+
+  h2 Products in this Category:
+  
+  ul
+    if product_list.length > 0
+        each product in product_list
+            li
+                a(href=product.url)= product.name
+    else
+        p No products in this category yet.
+
+  a.btn.btn-secondary(href=`/catalog/category/${category._id}/update`) Update Category
+  a.btn.btn-danger(href=`/catalog/category/${category._id}/delete`) Delete Category

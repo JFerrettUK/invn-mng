@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method="POST" action=(product ? `/catalog/product/${product._id}/update` : '/catalog/product/create')) 
+    div.form-group
+      label(for="name") Name:
+      input#name.form-control(type="text" placeholder="Name" name="name" required=true value=(product ? product.name : ''))
+    div.form-group
+      label(for="pcode") Product Code:
+      input#pcode.form-control(type="text" placeholder="Product Code (optional)" name="pcode" value=(product ? product.pcode : ''))
+    div.form-group
+      label(for="description") Description:
+      textarea#description.form-control(name="description")= product ? product.description : ''
+    div.form-group
+      label(for="category") Category:
+      select#category.form-control(name="category" required=true)
+        each category in categories
+          option(value=category._id selected=(product && product.category._id.toString() === category._id.toString()))= category.name
+    div.form-group
+      label(for="price") Price:
+      input#price.form-control(type="number" step="0.01" placeholder="Price" name="price" required=true value=(product ? product.price : ''))
+
+    if errors
+        ul
+          for error in errors
+            li= error.msg
+    button.btn.btn-primary(type="submit") Submit

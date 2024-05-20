@@ -1,5 +1,11 @@
-extends layout
+
+extends layout 
 
 block content
   h1= title
-  p Test to #{title}
+
+  div.button-container
+    br
+    a.btn.btn-primary(href='/catalog/categories') View Categories
+    br
+    a.btn.btn-secondary(href='/catalog/products') View Products

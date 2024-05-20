@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method="POST" action=(category ? `/catalog/category/${category._id}/update` : '/catalog/category/create'))
+    div.form-group
+      label(for="name") Name:
+      input#name.form-control(type="text" placeholder="Name" name="name" required=true value=(category ? category.name : ''))
+    div.form-group
+      label(for="description") Description:
+      textarea#description.form-control(name="description")= category ? category.description : ''
+    if errors
+      ul.errors
+        for error in errors
+          li= error.msg
+    button.btn.btn-primary(type="submit") Submit
+

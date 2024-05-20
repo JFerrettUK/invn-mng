@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Delete Category
+
+  p Are you sure you want to delete "#{category.name}"?
+
+  form(method="POST" action="")
+    input(type="hidden" name="categoryid" value=category._id)
+    button.btn.btn-danger(type="submit") Delete

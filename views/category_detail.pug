@@ -5,14 +5,15 @@ block content
   p= category.description
 
   h2 Products in this Category:
-  
+
   ul
-    if product_list.length > 0
-        each product in product_list
-            li
-                a(href=product.url)= product.name
+    if product_list && product_list.length 
+      each product in product_list
+        li
+          a(href=`/catalog/product/${product._id}`)= product.name
     else
-        p No products in this category yet.
+      p No products in this category yet.
 
   a.btn.btn-secondary(href=`/catalog/category/${category._id}/update`) Update Category
+  p
   a.btn.btn-danger(href=`/catalog/category/${category._id}/delete`) Delete Category

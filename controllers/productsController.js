@@ -98,32 +98,21 @@ exports.productCreatePost = [
 // Display product update form on GET
 exports.productUpdateGet = async (req, res, next) => {
   try {
-    async.parallel(
-      {
-        product(callback) {
-          Product.findById(req.params.id).populate("category").exec(callback);
-        },
-        categories(callback) {
-          Category.find(callback);
-        },
-      },
-      (err, results) => {
-        if (err) {
-          return next(err);
-        }
-        if (results.product == null) {
-          // No results.
-          const err = new Error("Product not found");
-          err.status = 404;
-          return next(err);
-        }
-        res.render("product_form", {
-          title: "Update Product",
-          product: results.product,
-          categories: results.categories,
-        });
-      }
-    );
+    const [product, categories] = await Promise.all([
+      Product.findById(req.params.id).populate("category"), // Fetch product and populate category
+      Category.find(), // Fetch all categories
+    ]);
+
+    if (!product) {
+      const err = new Error("Product not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.render("product_form", {
+      title: "Update Product",
+      product,
+      categories,
+    });
   } catch (err) {
     return next(err);
   }

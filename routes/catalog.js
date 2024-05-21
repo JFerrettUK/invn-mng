@@ -5,24 +5,20 @@ const router = express.Router();
 const categoryController = require("../controllers/categoryController");
 const productController = require("../controllers/productsController");
 
-// Category Routes
-router.get("/categories", categoryController.categoryList);
-
+// Category Routes (Ordered for priority)
 router.get("/category/create", categoryController.categoryCreateGet);
 router.post("/category/create", categoryController.categoryCreatePost);
-
+router.get("/categories", categoryController.categoryList);
 router.get("/category/:id", categoryController.categoryDetail);
 router.get("/category/:id/update", categoryController.categoryUpdateGet);
 router.post("/category/:id/update", categoryController.categoryUpdatePost);
 router.get("/category/:id/delete", categoryController.categoryDeleteGet);
 router.post("/category/:id/delete", categoryController.categoryDeletePost);
 
-// Product Routes
-router.get("/products", productController.productList);
-
+// Product Routes (Ordered for priority)
 router.get("/product/create", productController.productCreateGet);
 router.post("/product/create", productController.productCreatePost);
-
+router.get("/products", productController.productList);
 router.get("/product/:id", productController.productDetail);
 router.get("/product/:id/update", productController.productUpdateGet);
 router.post("/product/:id/update", productController.productUpdatePost);

@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
 const Category = require("../models/categories");
+const Product = require("../models/products"); // Import Product model
 const { body, validationResult } = require("express-validator");
 
 exports.categoryList = async (req, res, next) => {
@@ -22,11 +22,16 @@ exports.categoryDetail = async (req, res, next) => {
       err.status = 404;
       return next(err);
     }
+    const productsInCategory = await Product.find({
+      category: req.params.id, // Use the _id from the URL to match products
+    })
+      .populate("category")
+      .exec();
 
     res.render("category_detail", {
-      // Remove the `product_list` context variable
       title: `Category: ${category.name}`,
       category,
+      product_list: productsInCategory,
     });
   } catch (err) {
     return next(err);

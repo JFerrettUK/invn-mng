@@ -140,7 +140,7 @@ exports.categoryDeleteGet = async (req, res, next) => {
 
 exports.categoryDeletePost = async (req, res, next) => {
   try {
-    await Category.findByIdAndRemove(req.body.categoryid);
+    await Category.findByIdAndDelete(req.body.categoryid);
     res.redirect("/catalog/categories");
   } catch (err) {
     return next(err);

@@ -191,7 +191,7 @@ exports.productDeleteGet = async (req, res, next) => {
 // Handle product delete on POST
 exports.productDeletePost = async (req, res, next) => {
   try {
-    await Product.findByIdAndRemove(req.body.productid);
+    await Product.findByIdAndDelete(req.body.productid);
     res.redirect("/catalog/products");
   } catch (err) {
     return next(err);

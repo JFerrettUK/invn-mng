@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1= title 
 
   form(method="POST" action=(product ? `/catalog/product/${product._id}/update` : '/catalog/product/create')) 
     div.form-group
@@ -26,4 +26,6 @@ block content
         ul
           for error in errors
             li= error.msg
+            
+    p 
     button.btn.btn-primary(type="submit") Submit

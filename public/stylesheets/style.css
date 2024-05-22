@@ -1,8 +1,8 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.container-no-padding {
+  width: 100%;
+  padding: 0;
 }
 
-a {
-  color: #00B7FF;
+.container-space {
+  padding: 20px;
 }

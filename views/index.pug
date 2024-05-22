@@ -2,10 +2,25 @@
 extends layout 
 
 block content
-  h1= title
+  h2 Track Your Inventory with Ease
+
+  p Welcome to my Inventory Management App. It lets you manage an inventory, no matter what's being tracked.
+  .feature-highlights
+    h4 Key Features:
+
+    ul
+      li
+        strong Categories: 
+        |  Organize your items into clear categories for seamless navigation.
+      li
+        strong Items: 
+        |  Track individual products with detailed descriptions, prices, and stock levels.
+      li
+        strong Full CRUD Operations: 
+        |  Easily Create, Read, Update, and Delete both categories and items.
 
   div.button-container
     br
     a.btn.btn-primary(href='/catalog/categories') View Categories
-    br
+    p
     a.btn.btn-secondary(href='/catalog/products') View Products

@@ -140,7 +140,11 @@ exports.categoryDeleteGet = async (req, res, next) => {
 
 exports.categoryDeletePost = async (req, res, next) => {
   try {
-    await Category.findByIdAndDelete(req.body.categoryid);
+    const category = await Category.findByIdAndRemove(req.params.id);
+
+    // Update products that reference this category
+    await Product.updateMany({ category: category._id }, { category: null }); // Or a default ID
+
     res.redirect("/catalog/categories");
   } catch (err) {
     return next(err);

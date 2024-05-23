@@ -6,6 +6,6 @@ block content
   ul
     each product in product_list
       li
-        a(href=`/catalog/product/${product._id}`)= product.name + ' - ' + product.category.name + ' (Price: ' + product.price.toFixed(2) + ')'
+        a(href=`/catalog/product/${product._id}`)= product.name + ' - ' + (product.category ? product.category.name : 'No Category') + ' (Price: ' + product.price.toFixed(2) + ')'
 
   a.btn.btn-primary(href="/catalog/product/create") Create New Product

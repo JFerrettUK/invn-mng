@@ -99,8 +99,8 @@ exports.productCreatePost = [
 exports.productUpdateGet = async (req, res, next) => {
   try {
     const [product, categories] = await Promise.all([
-      Product.findById(req.params.id).populate("category"), // Fetch product and populate category
-      Category.find(), // Fetch all categories
+      Product.findById(req.params.id).populate("category"),
+      Category.find(),
     ]);
 
     if (!product) {
@@ -108,6 +108,7 @@ exports.productUpdateGet = async (req, res, next) => {
       err.status = 404;
       return next(err);
     }
+
     res.render("product_form", {
       title: "Update Product",
       product,

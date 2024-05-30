@@ -3,6 +3,12 @@ extends layout
 block content
   h1= title
 
+  if justCreated
+    p Category created successfully! 
+
+  // Add a hidden input to track if the category is newly created
+  input(type="hidden" name="justCreated" value=(justCreated ? 'true' : 'false'))
+
   form(method="POST" action=(category ? `/catalog/category/${category._id}/update` : '/catalog/category/create'))
     div.form-group
       label(for="name") Name:

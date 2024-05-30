@@ -141,14 +141,13 @@ exports.productUpdatePost = [
   // Process request after validation and sanitization
   async (req, res, next) => {
     const errors = validationResult(req);
-
     const product = new Product({
       name: req.body.name,
       pcode: req.body.pcode,
       description: req.body.description,
       category: req.body.category,
       price: req.body.price,
-      _id: req.params.id, // This is required, or a new ID will be assigned!
+      _id: req.params.id,
     });
 
     if (!errors.isEmpty()) {
@@ -165,7 +164,8 @@ exports.productUpdatePost = [
       // Data from form is valid. Update the record.
       try {
         await Product.findByIdAndUpdate(req.params.id, product, {});
-        res.redirect(product.url);
+        // Redirect to the product list page
+        res.redirect("/catalog/products");
       } catch (err) {
         return next(err);
       }
